@@ -31,7 +31,7 @@ class _SecondScreenState extends State<SecondScreen> {
         itemCount: _coordinates.length,
         itemBuilder: (context, index) {
           var coord = _coordinates[index];
-          var formattedDate = DateFormat('yyyy/MM/dd HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(coord[0])))
+          var formattedDate = DateFormat('yyyy/MM/dd HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(coord[0])));
           return ListTile(
             title: Text('Timestamp: $formattedDate'),
             subtitle: Text('Latitude: ${coord[1]}, Longitude: ${coord[2]}'),
