@@ -2,7 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:path_provider/path_provider.dart';
+
 class SecondScreen extends StatefulWidget {
+  const SecondScreen({super.key});
   @override
   _SecondScreenState createState() => _SecondScreenState();
 }

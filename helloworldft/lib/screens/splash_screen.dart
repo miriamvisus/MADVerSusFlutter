@@ -5,7 +5,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'settings_screen.dart';
+
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }

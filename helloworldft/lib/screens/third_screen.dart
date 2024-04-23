@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
 class ThirdScreen extends StatelessWidget {
+  const ThirdScreen({super.key});
   void _showAlertDialog(BuildContext context) {
     showDialog(
       context: context,
