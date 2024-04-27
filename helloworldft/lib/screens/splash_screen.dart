@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../db/Database_helper.dart';
 import 'settings_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -13,6 +13,8 @@ class SplashScreen extends StatefulWidget {
 }
 class _SplashScreenState extends State<SplashScreen> {
   StreamSubscription<Position>? _positionStreamSubscription;
+  //DatabaseHelper db = DatabaseHelper();
+  DatabaseHelper db = DatabaseHelper.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -74,6 +76,11 @@ class _SplashScreenState extends State<SplashScreen> {
     _positionStreamSubscription = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
           (Position position) {
         writePositionToFile(position);
+      },
+    );
+    _positionStreamSubscription = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
+          (Position position) {
+        db.insertCoordinate(position);
       },
     );
   }
