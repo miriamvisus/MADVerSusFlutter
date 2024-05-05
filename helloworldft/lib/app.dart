@@ -6,7 +6,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter App MADVerSus',
+      title: 'Flutter Demo',
       home: MainScreen(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
@@ -15,5 +15,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
