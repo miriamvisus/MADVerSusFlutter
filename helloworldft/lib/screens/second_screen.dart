@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
-
+import 'package:intl/intl.dart';
 import '../db/Database_helper.dart';
 
 class SecondScreen extends StatefulWidget {
@@ -19,6 +19,7 @@ class _SecondScreenState extends State<SecondScreen> {
     _loadCoordinates();
     _loadDbCoordinates();
   }
+
   Future<void> _loadCoordinates() async {
     final directory = await getApplicationDocumentsDirectory();
     final file = File('${directory.path}/gps_coordinates.csv');
@@ -27,6 +28,7 @@ class _SecondScreenState extends State<SecondScreen> {
       _coordinates = lines.map((line) => line.split(';')).toList();
     });
   }
+
   Future<void> _loadDbCoordinates() async {
     List<Map<String, dynamic>> dbCoords = await DatabaseHelper.instance.getCoordinates();
     setState(() {
@@ -37,6 +39,7 @@ class _SecondScreenState extends State<SecondScreen> {
       ]).toList();
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,8 +51,9 @@ class _SecondScreenState extends State<SecondScreen> {
         itemBuilder: (context, index) {
           if (index < _coordinates.length) {
             var coord = _coordinates[index];
+            var formattedDate = DateFormat('yyyy/MM/dd HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(coord[0])));
             return ListTile(
-              title: Text('CSV Timestamp: ${coord[0]}'),
+              title: Text('Timestamp: $formattedDate'),
               subtitle: Text('Latitude: ${coord[1]}, Longitude: ${coord[2]}'),
             );
           } else {
@@ -62,17 +66,11 @@ class _SecondScreenState extends State<SecondScreen> {
               onLongPress: () => _showUpdateDialog(coord[0], coord[1], coord[2]),
             );
           }
-          /// Aquí estaba esto:
-          // var coord = _coordinates[index];
-          //           var formattedDate = DateFormat('yyyy/MM/dd HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(coord[0])));
-          //           return ListTile(
-          //             title: Text('Timestamp: $formattedDate'),
-          //             subtitle: Text('Latitude: ${coord[1]}, Longitude: ${coord[2]}'),
-          //           );
         },
       ),
     );
   }
+
   void _showDeleteDialog(String timestamp) {
     showDialog(
       context: context,
@@ -98,6 +96,7 @@ class _SecondScreenState extends State<SecondScreen> {
       },
     );
   }
+
   void _loadDbCoordinatesAndUpdate() async {
     List<Map<String, dynamic>> dbCoords = await DatabaseHelper.instance.getCoordinates();
     setState(() {
@@ -108,6 +107,7 @@ class _SecondScreenState extends State<SecondScreen> {
       ]).toList();
     });
   }
+
   void _showUpdateDialog(String timestamp, String currentLat, String currentLong) {
     TextEditingController latController = TextEditingController(text: currentLat);
     TextEditingController longController = TextEditingController(text: currentLong);

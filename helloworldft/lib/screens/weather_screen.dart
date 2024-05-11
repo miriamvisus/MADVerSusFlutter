@@ -15,7 +15,7 @@ class WeatherScreen extends StatefulWidget {
 
 class _WeatherScreenState extends State<WeatherScreen> {
   late Map<String, dynamic> weatherData = {};
-  late String apiKey = '';
+  late String apiKey = 'e30879ef8cc656ab306b4f616619059f';
 
   @override
   void initState() {
@@ -45,7 +45,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
           .longitude}');
       print('Weather API URL: ${Uri.parse(
           'https://api.openweathermap.org/data/2.5/find?lat=${widget
-              .latitude}&lon=${widget.longitude}')}');
+              .latitude}&lon=${widget.longitude}&cnt=1&APPID=${apiKey}')}');
 
       final response = await http.get(
           Uri.parse('https://api.openweathermap.org/data/2.5/find?lat=${widget
