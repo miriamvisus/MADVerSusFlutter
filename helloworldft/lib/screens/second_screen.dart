@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:intl/intl.dart';
+import 'weather_screen.dart';
+
 import '../db/Database_helper.dart';
 
 class SecondScreen extends StatefulWidget {
@@ -111,6 +113,7 @@ class _SecondScreenState extends State<SecondScreen> {
   void _showUpdateDialog(String timestamp, String currentLat, String currentLong) {
     TextEditingController latController = TextEditingController(text: currentLat);
     TextEditingController longController = TextEditingController(text: currentLong);
+    var coord = _coordinates[3];
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -142,6 +145,15 @@ class _SecondScreenState extends State<SecondScreen> {
                 Navigator.of(context).pop();
                 await DatabaseHelper.instance.updateCoordinate(timestamp, latController.text, longController.text);
                 _loadDbCoordinatesAndUpdate();
+              },
+            ),
+            TextButton(
+              child: Text("Weather"),
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WeatherScreen(latitude: coord[1], longitude: coord[2])),
+                );
               },
             ),
           ],

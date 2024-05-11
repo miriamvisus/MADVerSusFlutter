@@ -11,6 +11,7 @@ class SplashScreen extends StatefulWidget {
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
+
 class _SplashScreenState extends State<SplashScreen> {
   StreamSubscription<Position>? _positionStreamSubscription;
   //DatabaseHelper db = DatabaseHelper();
