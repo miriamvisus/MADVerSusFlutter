@@ -93,6 +93,16 @@ class _SecondScreenState extends State<SecondScreen> {
                 _loadDbCoordinatesAndUpdate(); // Reload data and update UI
               },
             ),
+            TextButton(
+              child: Text("Weather"),
+              onPressed: () {
+                var coord = _dbCoordinates.firstWhere((element) => element[0] == timestamp);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WeatherScreen(latitude: coord[1], longitude: coord[2])),
+                );
+              },
+            ),
           ],
         );
       },
@@ -113,7 +123,6 @@ class _SecondScreenState extends State<SecondScreen> {
   void _showUpdateDialog(String timestamp, String currentLat, String currentLong) {
     TextEditingController latController = TextEditingController(text: currentLat);
     TextEditingController longController = TextEditingController(text: currentLong);
-    var coord = _coordinates[3];
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -150,9 +159,10 @@ class _SecondScreenState extends State<SecondScreen> {
             TextButton(
               child: Text("Weather"),
               onPressed: () {
+                var coord = _dbCoordinates.firstWhere((element) => element[0] == timestamp);
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => WeatherScreen(latitude: coord[1], longitude: coord[2])),
+                  context,
+                  MaterialPageRoute(builder: (context) => WeatherScreen(latitude: coord[1], longitude: coord[2])),
                 );
               },
             ),
