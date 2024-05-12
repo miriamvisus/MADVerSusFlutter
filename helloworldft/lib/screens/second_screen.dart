@@ -54,15 +54,17 @@ class _SecondScreenState extends State<SecondScreen> {
         itemBuilder: (context, index) {
           if (index < _coordinates.length) {
             var coord = _coordinates[index];
+            var formattedDate = DateFormat('yyyy/MM/dd HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(coord[0])));
             return ListTile(
-              title: Text('CSV Timestamp: ${coord[0]}'),
+              title: Text('Timestamp: $formattedDate'),
               subtitle: Text('Latitude: ${coord[1]}, Longitude: ${coord[2]}'),
             );
           } else {
             var dbIndex = index - _coordinates.length;
             var coord = _dbCoordinates[dbIndex];
+            var formattedDate = DateFormat('yyyy/MM/dd HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(coord[0])));
             return ListTile(
-              title: Text('DB Timestamp: ${coord[0]}', style: TextStyle(color: Colors.blue)),
+              title: Text('DB Timestamp: $formattedDate', style: TextStyle(color: Colors.blue)),
               subtitle: Text('Latitude: ${coord[1]}, Longitude: ${coord[2]}', style: TextStyle(color: Colors.blue)),
               onTap: () => _showDeleteDialog(coord[0]), // Passing timestamp to the delete dialog
               onLongPress: () => _showUpdateDialog(coord[0], coord[1], coord[2]),
