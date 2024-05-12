@@ -83,7 +83,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Text(
-                'City: ${weatherData['list'][0]['name']}',
+                '${weatherData['list'][0]['name']}',
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8.0),
