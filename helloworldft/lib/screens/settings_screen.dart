@@ -8,8 +8,10 @@ class SettingsScreen extends StatefulWidget {
   @override
   _SettingsScreenState createState() => _SettingsScreenState();
 }
+
 class _SettingsScreenState extends State<SettingsScreen> {
   Map<String, TextEditingController> controllers = {};
+
   Future<Map<String, dynamic>> _fetchAllPreferences() async {
     final prefs = await SharedPreferences.getInstance();
     final keys = prefs.getKeys();
@@ -18,8 +20,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
       prefsMap[key] = prefs.get(key);
       controllers[key] = TextEditingController(text: prefs.get(key).toString());
     }
+
     return prefsMap;
   }
+
   Future<void> _updatePreference(String key, String value) async {
     final prefs = await SharedPreferences.getInstance();
     if (value is String) {

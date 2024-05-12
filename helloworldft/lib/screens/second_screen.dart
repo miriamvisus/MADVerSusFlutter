@@ -50,13 +50,12 @@ class _SecondScreenState extends State<SecondScreen> {
         title: Text('Second Screen'),
       ),
       body: ListView.builder(
-        itemCount: _coordinates.length + _dbCoordinates.length,
+        itemCount: _coordinates.length + _dbCoordinates.length, // Combined count
         itemBuilder: (context, index) {
           if (index < _coordinates.length) {
             var coord = _coordinates[index];
-            var formattedDate = DateFormat('yyyy/MM/dd HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(coord[0])));
             return ListTile(
-              title: Text('Timestamp: $formattedDate'),
+              title: Text('CSV Timestamp: ${coord[0]}'),
               subtitle: Text('Latitude: ${coord[1]}, Longitude: ${coord[2]}'),
             );
           } else {
@@ -159,17 +158,13 @@ class _SecondScreenState extends State<SecondScreen> {
             ),
             TextButton(
               child: Text("Weather"),
-                onPressed: () async {
-                  List<Map<String, dynamic>> coordinates = await DatabaseHelper.instance.getCoordinates();
-                  if (coordinates.isNotEmpty) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) =>
-                          WeatherScreen(latitude: coordinates[0]['latitude'],
-                              longitude: coordinates[0]['longitude'])),
-                    );
-                  }
-                },
+              onPressed: () {
+                var coord = _dbCoordinates.firstWhere((element) => element[0] == timestamp);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WeatherScreen(latitude: coord[1], longitude: coord[2])),
+                );
+              },
             ),
           ],
         );

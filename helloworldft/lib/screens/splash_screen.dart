@@ -1,23 +1,77 @@
+import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:logger/logger.dart';
+import 'settings_screen.dart';
 import 'dart:io';
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:path_provider/path_provider.dart';
 import '/db/database_helper.dart';
-import 'settings_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
-
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final logger = Logger();
+  final _uidController = TextEditingController();
+  final _tokenController = TextEditingController();
   StreamSubscription<Position>? _positionStreamSubscription;
-
-  //DatabaseHelper db = DatabaseHelper();
   DatabaseHelper db = DatabaseHelper.instance;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPrefs();
+  }
+
+  Future<void> _loadPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    String? uid = prefs.getString('uid');
+    String? token = prefs.getString('token');
+    if (uid == null || token == null) {
+      _showInputDialog();
+    } else {
+      logger.d("UID: $uid, Token: $token");
+    }
+  }
+  Future<void> _showInputDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Enter UID and Token'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                TextField(
+                  controller: _uidController,
+                  decoration: InputDecoration(hintText: "UID"),
+                ),
+                TextField(
+                  controller: _tokenController,
+                  decoration: InputDecoration(hintText: "Token"),
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('Save'),
+              onPressed: () async {
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setString('uid', _uidController.text);
+                await prefs.setString('token', _tokenController.text);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +112,14 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
     );
   }
+
+  @override
+  void dispose() {
+    _uidController.dispose();
+    _tokenController.dispose();
+    super.dispose();
+  }
+
   void startTracking() async {
     final locationSettings = LocationSettings(
       accuracy: LocationAccuracy.high, // Adjust the accuracy as needed
@@ -82,10 +144,12 @@ class _SplashScreenState extends State<SplashScreen> {
         writePositionToFile(position);
       },
     );
+
+    // insert into sqflite db
     _positionStreamSubscription = Geolocator.getPositionStream(locationSettings: locationSettings).listen(
-          (Position position) {
-        db.insertCoordinate(position);
-      },
+            (Position position) {
+          db.insertCoordinate(position);
+        },
     );
   }
   void stopTracking() {

@@ -43,6 +43,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
     try {
       print('Fetching weather data for coordinates: ${widget.latitude}, ${widget
           .longitude}');
+
       print('Weather API URL: ${Uri.parse(
           'https://api.openweathermap.org/data/2.5/find?lat=${widget
               .latitude}&lon=${widget.longitude}&cnt=1&APPID=${apiKey}')}');
