@@ -7,6 +7,7 @@ class DatabaseHelper {
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor(); // Singleton instance
 
   static Database? _database;
+
   Future<Database> get database async {
     if (_database != null) return _database!;
     _database = await initDB();
@@ -18,17 +19,18 @@ class DatabaseHelper {
       join(path, 'coordinate_database.db'),
       onCreate: (db, version) async {
         await db.execute('''
- CREATE TABLE coordinates(
- id INTEGER PRIMARY KEY AUTOINCREMENT,
- timestamp TEXT,
- latitude REAL,
- longitude REAL
- )
- ''');
+           CREATE TABLE coordinates(
+             id INTEGER PRIMARY KEY AUTOINCREMENT,
+             timestamp TEXT,
+             latitude REAL,
+             longitude REAL
+           )
+        ''');
       },
       version: 1,
     );
   }
+
   Future<void> insertCoordinate(Position position) async {
     final db = await database;
     await db.insert('coordinates', {
@@ -46,6 +48,7 @@ class DatabaseHelper {
       whereArgs: [timestamp],
     );
   }
+
   Future<List<Map<String, dynamic>>> getCoordinates() async {
     final db = await database;
     return await db.query('coordinates');

@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:intl/intl.dart';
 import 'weather_screen.dart';
-
-import '../db/Database_helper.dart';
+import '/db/database_helper.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});
+
   @override
   _SecondScreenState createState() => _SecondScreenState();
 }
+
 class _SecondScreenState extends State<SecondScreen> {
   List<List<String>> _coordinates = [];
   List<List<String>> _dbCoordinates = []; // For coordinates from the database
@@ -158,13 +159,17 @@ class _SecondScreenState extends State<SecondScreen> {
             ),
             TextButton(
               child: Text("Weather"),
-              onPressed: () {
-                var coord = _dbCoordinates.firstWhere((element) => element[0] == timestamp);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => WeatherScreen(latitude: coord[1], longitude: coord[2])),
-                );
-              },
+                onPressed: () async {
+                  List<Map<String, dynamic>> coordinates = await DatabaseHelper.instance.getCoordinates();
+                  if (coordinates.isNotEmpty) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) =>
+                          WeatherScreen(latitude: coordinates[0]['latitude'],
+                              longitude: coordinates[0]['longitude'])),
+                    );
+                  }
+                },
             ),
           ],
         );
