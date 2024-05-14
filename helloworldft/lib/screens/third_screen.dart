@@ -19,7 +19,7 @@ class _ThirdScreenState extends State<ThirdScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Third screen'),
+          title: Text('Feedback'),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),

@@ -77,7 +77,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('HelloWorldFt for MAD'),
+        title: Text('The Mesones Tour'),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.settings),

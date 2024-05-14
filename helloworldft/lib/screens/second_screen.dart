@@ -47,7 +47,7 @@ class _SecondScreenState extends State<SecondScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Second Screen'),
+        title: Text('Locations'),
       ),
       body: ListView.builder(
         itemCount: _coordinates.length + _dbCoordinates.length, // Combined count
