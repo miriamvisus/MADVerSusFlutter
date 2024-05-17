@@ -94,7 +94,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Welcome to the Home Screen!'),
+            Text('Activate/Deactivate Tracking', style: TextStyle(fontSize: 18),),
             Switch(
               value: _positionStreamSubscription != null,
               onChanged: (value) {
