@@ -29,7 +29,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("Iniciar sesión")),
+        appBar: AppBar(title: Text("Log In")),
     body: Column(
       children: <Widget>[
         TextField(

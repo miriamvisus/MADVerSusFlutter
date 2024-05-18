@@ -28,11 +28,11 @@ class MyApp extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             if (snapshot.data != null) {
-              return MainScreen(); // Usuario está logueado
+              return MainScreen();
             }
-            return LoginScreen(); // Usuario no está logueado
+            return LoginScreen();
           }
-          return CircularProgressIndicator(); // Esperando conexión
+          return CircularProgressIndicator();
         },
       ),
       theme: ThemeData(
