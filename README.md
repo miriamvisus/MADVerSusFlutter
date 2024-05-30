@@ -19,61 +19,61 @@ This Flutter/Dart-based app is a university project aiming to integrate Open Str
 <table>
   <tr>
     <td>
-      <img src="Images/IMG-20240530-WA0003/.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0003/.jpg" width="80%"/>
       <p align="center">Login Screen</p>
     </td>
     <td>
-      <img src="Images/IMG-20240530-WA0004.png" width="80%" />
+      <img src="Images/IMG-20240530-WA0004.jpg" width="80%" />
       <p align="center">Main View</p>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="Images/IMG-20240530-WA0002.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0002.jpg" width="80%"/>
       <p align="center">UID Authentication</p>
     </td>
     <td>
-      <img src="Images/IMG-20240530-WA0005.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0005.jpg" width="80%"/>
       <p align="center">Coordinates list</p>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="Images/IMG-20240530-WA0006.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0006.jpg" width="80%"/>
       <p align="center">Coordinates can be deleted</p>
     </td>
     <td>
-      <img src="Images/IMG-20240530-WA0007.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0007.jpg" width="80%"/>
       <p align="center">Coordinates can be updated</p>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="Images/IMG-20240530-WA0007.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0007.jpg" width="80%"/>
       <p align="center">You can check your login and log out in the settings screen</p>
     </td>
     <td>
-      <img src="Images/IMG-20240530-WA0010.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0010.jpg" width="80%"/>
       <p align="center">To access the map you are asked about your location</p>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="Images/IMG-20240530-WA0009.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0009.jpg" width="80%"/>
       <p align="center">Then the map screen is shown with a predefined route</p>
     </td>
     <td>
-      <img src="Images/IMG-20240530-WA0011.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0011.jpg" width="80%"/>
       <p align="center">You can also check the weather of a location</p>
     </td>
   </tr>
   <tr>
     <td>
-      <img src="Images/IMG-20240530-WA0013.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0013.jpg" width="80%"/>
       <p align="center">This is the Feedback zone</p>
     </td>
     <td>
-      <img src="Images/IMG-20240530-WA0012.png" width="80%"/>
+      <img src="Images/IMG-20240530-WA0012.jpg" width="80%"/>
       <p align="center">And you can leave us a review!</p>
     </td>
   </tr>
@@ -91,7 +91,7 @@ This Flutter/Dart-based app is a university project aiming to integrate Open Str
 - Our special mesones route
 
 List of **technical** features of the app.
-Libraries versions:
+- Libraries versions:
   fluttertoast: ^8.0.8
   shared_preferences: ^2.2.2
   firebase_core: ^2.30.1
@@ -117,6 +117,13 @@ Libraries versions:
 
   flutter packages to download: <a href https://pub.dev/>
   flutter official documentation: <a href https://flutter.dev/development>
+  
+- Maps: Openstreetmaps or Google maps
+- Resful APIs used (https://openweathermap.org/api .Weather related API). 
+- Persistence in database
+- Persistence in shared preferences
+- Firebase Realtime database
+- Firebase authentication
   
 ## How to Use
 The app is very straightforward, just press the enter button to enter to the main view and then you decide next
