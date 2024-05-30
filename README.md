@@ -49,7 +49,7 @@ This Flutter/Dart-based app is a university project aiming to integrate Open Str
   </tr>
   <tr>
     <td>
-      <img src="Images/IMG-20240530-WA0007.jpg" width="80%"/>
+      <img src="Images/IMG-20240530-WA0008.jpg" width="80%"/>
       <p align="center">You can check your login and log out in the settings screen</p>
     </td>
     <td>
