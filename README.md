@@ -19,7 +19,7 @@ This Flutter/Dart-based app is a university project aiming to integrate Open Str
 <table>
   <tr>
     <td>
-      <img src="Images/IMG-20240530-WA0003/.jpg" width="80%"/>
+      <img src="Images/IMG-20240530-WA0003.jpg" width="80%"/>
       <p align="center">Login Screen</p>
     </td>
     <td>
