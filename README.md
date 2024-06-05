@@ -115,8 +115,8 @@ List of **technical** features of the app.
   flutter_bloc: ^8.1.5
   flutter_launcher_icons: ^0.13.1
 
-  flutter packages to download: <a href https://pub.dev/>
-  flutter official documentation: <a href https://flutter.dev/development>
+  flutter packages to download: https://pub.dev/
+  flutter official documentation: https://flutter.dev/development
   
 - Maps: Openstreetmaps or Google maps
 - Resful APIs used (https://openweathermap.org/api .Weather related API). 
